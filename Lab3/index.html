@@ -1,0 +1,165 @@
+<html>
+	<head>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbon2XWL9hjvcB-pou4GpoFwibr-5cOWo&callback=initMap">
+    </script>
+		<title>Lab3</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<style>
+table  {border-collapse: collapse; }
+td, th { border: 1px solid black; padding: 3px 8px;}
+th { text-align: left; }
+body {
+	color: firebrick;
+}
+		</style>
+	</head>
+	<body>
+		<div style="margin:10px;">
+			<nav class="navbar navbar-inverse navbar-static-top">
+				<div class="container">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="/">Home</a>
+						</li>
+						<li>
+							<a href="./about.html">Pictures</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div class="jumbotron"  style="padding:40px;">
+				<h1>Lab 3</h1>
+				<div class="container">
+					<div class="row">
+						<div class="row">
+							<div class="col"> 
+								<p class="lead"> Name: </p><input type="text" name="text" value="" id="text" /> 
+							</div>
+							<div class="col">
+								<p class="lead"> Date: </p><input type="date" name="input" value="" id="date" /> 
+							</div>
+							<div class="col">
+								<p class="lead"> Email: </p><input type="email" name="input" value="" id="email" />
+							</div>
+							<div class="col">
+								<p class="lead"> Telephone: </p><input type="tel" name="input" value="" id="tel" />
+							</div>
+							<div class="col">
+								<p class="lead"> Number: </p><input type="number" name="input" value="" id="number" />
+							</div>
+							<div>
+								<p class="lead"> Range: 1-10 </p><input list="tickmarks" min="0" value="0" max="10" step="1" type="range" name="input" id="range" />
+								<datalist id="tickmarks">
+									<option value="0" label="0%">
+									<option value="1">
+									<option value="2">
+									<option value="3">
+									<option value="4">
+									<option value="5" label="50%">
+									<option value="6">
+									<option value="7">
+									<option value="8">
+									<option value="9">
+									<option value="10" label="100%">
+								</datalist>
+							</div>
+							<div class="col">
+								<button onclick="myFunction()">Submit</button>
+							</div>
+						</div>
+						<div class="col">
+							<p id="demo"></p>
+							<div id="content"></div>
+							<div id="location"></div>
+						</div> <!-- Row -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+function geoFindMe() {
+  var output = document.getElementById("location");
+
+  if (!navigator.geolocation){
+    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+    return;
+  }
+
+  function success(position) {
+    var latitude  = position.coords.latitude;
+    var longitude = position.coords.longitude;
+
+    output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+    var img = new Image();
+		function initMap() {
+        var uluru = {lat: latitude, lng: longitude};
+        var map = new google.maps.Map(document.getElementById('location'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    
+    output.appendChild(img);
+  }
+
+  function error() {
+    output.innerHTML = "Unable to retrieve your location";
+  }
+
+  output.innerHTML = "<p>Locating…</p>";
+
+  navigator.geolocation.getCurrentPosition(success, error);
+}
+var USERS = [];
+function myFunction() {
+	let input = document.getElementById("text").value;
+	let date = document.getElementById("date").value;
+	let tel = document.getElementById("tel").value;
+	let number = document.getElementById("number").value;
+	let range = document.getElementById('range').value;
+	geoFindMe();
+	document.getElementById("demo").innerHTML = input;
+	USERS.push({
+		name: input,
+		date: date,
+		tel: tel,
+		number: number,
+		range: range,
+		});
+	document.getElementById("content").innerHTML = '';
+	document.getElementById("content").appendChild(buildTable(USERS));
+	}
+function buildTable(data) {
+	var headers = Object.keys(data[0]);
+	var table = document.createElement('table');
+	var headerRow = document.createElement('tr');
+	headers.forEach(function(header){
+		var headerEl = document.createElement('th');
+		headerEl.textContent = header;
+		headerRow.appendChild(headerEl);
+	})
+	table.appendChild(headerRow);
+
+	data.forEach(function(mountain){
+		var row = document.createElement('tr');
+		for (prop in mountain) {
+			var el = document.createElement('td');
+			if (typeof mountain[prop] === 'number') {
+				el.style.textAlign = "right";
+				}
+			el.textContent = mountain[prop];
+			row.appendChild(el);
+			}
+		table.appendChild(row);
+	})
+	return table;
+	}
+	</script>
+</html>
