@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>Lab2</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="jumbotron"  style="padding:40px;">
+			<h1>Lab 2
+			</h1>
+		</div>
+		<div class="container">
+			<div class="row">
+			<form name="AddAndEdit">
+				<select name="list" id="personlist" onchange="alert(this.options[this.selectedIndex].innerHTML);">
+					<option value="1">Choice 1</option>
+					<option value="2">Choice 2</option>
+					<option value="3">Choice 3</option>
+					<option value="4">Choice 4</option>
+					<option value="5">Choice 5</option>
+					<option value="6">Choice 6</option>
+					<option value="7">Choice 7</option>
+					<option value="8">Choice 8</option>
+					<option value="9">Choice 9</option>
+					<option value="10">Choice 10</option>
+					<option value="11">Choice 11</option>
+					<option value="12">Choice 12</option>
+				</select>
+			</form>
+			<select multiple="multiple" id="alpha">
+				<option value="a">A</option>
+				<option value="b">B</option>
+				<option value="c">C</option>
+				<option value="d">D</option>
+			</select>
+			<input type="button" value="Submit" onclick="getMultipleSelectedValue()"/>
+			</div>
+		    <textarea id="area" rows="15"></textarea>
+		</div>	
+	</body>
+	<script>
+let text="";
+text = document.getElementById('area').value;  
+console.log(text1);
+function getMultipleSelectedValue(){
+	var x=document.getElementById("alpha");
+	for (var i = 0; i < x.options.length; i++) {
+		if(x.options[i].selected){
+			alert(x.options[i].value);
+			}
+		}
+}
+	</script>
+</html>

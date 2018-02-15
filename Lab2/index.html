@@ -1,0 +1,136 @@
+<html>
+	<head>
+		<title>Lab2</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<style>
+table  {border-collapse: collapse; }
+td, th { border: 1px solid black; padding: 3px 8px;}
+th { text-align: left; }
+body {
+	color: firebrick;
+}
+.bg1 {
+	background-color: blue;
+}
+		</style>
+	</head>
+		<div style="margin:10px;">
+			<nav class="navbar navbar-inverse navbar-static-top">
+				<div class="container">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="/">Home</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div class="jumbotron"  style="padding:40px;">
+				<h1>Lab 2</h1>
+			</div>
+		<body>
+			<p id="demo"></p>
+			<div id="content"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col"> 
+						<p class="lead"> Name: </p><input type="text" name="text" value="" id="text" /> 
+						<p class="lead"> Number: </p><input type="number" name="input" value="" id="number" />
+						<p class="lead"> Password: </p><input type="password" name="input" value="" id="password" />
+						<p class="lead"> Password Again: </p><input type="password" name="password" value="" id="passwordAgain" />
+					</div>
+					<div class="col">
+						<button onclick="myFunction()">Submit</button>
+					</div>
+					<div id="background"> 
+						<button onclick="changeText()">Change Text</button>
+						<p id="changeText"></p>
+						<div>
+							<input type="checkbox" id="red" value="red">
+							<label for="coding">Red</label>
+						</div>
+						<div>
+							<input type="checkbox" id="blue" value="blue">
+							<label for="music">Blue</label>
+						</div>
+						<div>
+							<input type="checkbox" id="green" value="green">
+							<label for="art">Green</label>
+						</div>
+						<div>
+							<input type="checkbox" id="other" value="other">
+							<label for="other">Other</label>
+							<input type="text" id="otherValue" name="other">
+						</div>
+						<div>
+							<button onclick="changeBackground()">Change Background</button>
+						</div>
+					</div>
+				</div>
+				<a href="./select.html"><button>Select</button></a>
+		</div> 
+		</div>
+		</div>
+	</body>
+	<script>
+var USERS = [];
+function myFunction() {
+	let input = document.getElementById("text").value;
+	let password = document.getElementById("password").value;
+	let passwordAgain = document.getElementById("passwordAgain").value;
+	let number = document.getElementById("number").value;
+
+	if(password !== passwordAgain) {
+		alert("Input the same password plz");
+		return;
+		}
+	document.getElementById("demo").innerHTML = input;
+	USERS.push({
+		name: input.toUpperCase(),
+		number: number,
+		});
+	document.getElementById("content").innerHTML = '';
+	document.getElementById("content").appendChild(buildTable(USERS));
+	}
+function buildTable(data) {
+	var headers = Object.keys(data[0]);
+	var table = document.createElement('table');
+	var headerRow = document.createElement('tr');
+	headers.forEach(function(header){
+		var headerEl = document.createElement('th');
+		headerEl.textContent = header;
+		headerRow.appendChild(headerEl);
+	})
+	table.appendChild(headerRow);
+
+	data.forEach(function(mountain){
+		var row = document.createElement('tr');
+		for (prop in mountain) {
+			var el = document.createElement('td');
+			if (typeof mountain[prop] === 'number') {
+				el.style.textAlign = "right";
+				}
+			el.textContent = mountain[prop];
+			row.appendChild(el);
+			}
+		table.appendChild(row);
+	})
+	return table;
+	}
+function changeText() {
+	document.getElementById("changeText").innerHTML = 'woah look a word';
+	}
+function changeBackground() {
+	let color="";
+	if(document.getElementById("red").checked) {
+		color="red";
+		}else if(document.getElementById("blue").checked){
+			color="blue";
+			}else if(document.getElementById("green").checked){
+				color="green";
+				}else if(document.getElementById("other").checked){
+					color=document.getElementById("otherValue").value;
+					}
+	document.getElementById('background').style.backgroundColor = color;
+	}
+	</script>
+</html>

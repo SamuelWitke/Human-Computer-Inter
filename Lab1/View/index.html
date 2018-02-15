@@ -1,0 +1,104 @@
+<html>
+	<head>
+		<title>Lab1</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<style>
+			table  {border-collapse: collapse; }
+			td, th { border: 1px solid black; padding: 3px 8px;}
+			th { text-align: left; }
+			body {
+				color: firebrick;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="margin:10px;">
+			<nav class="navbar navbar-inverse navbar-static-top">
+				<div class="container">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="/">Home</a>
+						</li>
+						<li>
+							<a href="/about">About</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div class="jumbotron"  style="padding:40px;">
+				<h1>Lab 1</h1>
+				<div class="container">
+					<div class="row">
+						<div class="row">
+							<div class="col"> 
+								<p class="lead"> Name: </p><input type="text" name="text" value="" id="text" /> 
+							</div>
+							<div class="col">
+								<p class="lead"> Date: </p><input type="date" name="input" value="" id="date" /> 
+							</div>
+							<div class="col">
+								<p class="lead"> Email: </p><input type="email" name="input" value="" id="email" />
+							</div>
+							<div class="col">
+								<p class="lead"> Telephone: </p><input type="tel" name="input" value="" id="tel" />
+							</div>
+							<div class="col">
+								<p class="lead"> Number: </p><input type="number" name="input" value="" id="number" />
+							</div>
+							<div class="col">
+								<button onclick="myFunction()">Submit</button>
+							</div>
+						</div>
+						<div class="col">
+							<p id="demo"></p>
+							<div id="content"></div>
+						</div> <!-- Row -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+var USERS = [];
+function myFunction() {
+	let input = document.getElementById("text").value;
+	let date = document.getElementById("date").value;
+	let tel = document.getElementById("tel").value;
+	let number = document.getElementById("number").value;
+	document.getElementById("demo").innerHTML = input;
+	USERS.push({
+		name: input,
+		date: date,
+		tel: tel,
+		number: number,
+		});
+	document.getElementById("content").innerHTML = '';
+	document.getElementById("content").appendChild(buildTable(USERS));
+	}
+function buildTable(data) {
+	var headers = Object.keys(data[0]);
+	var table = document.createElement('table');
+	var headerRow = document.createElement('tr');
+	headers.forEach(function(header){
+		var headerEl = document.createElement('th');
+		headerEl.textContent = header;
+		headerRow.appendChild(headerEl);
+	})
+	table.appendChild(headerRow);
+
+	data.forEach(function(mountain){
+		var row = document.createElement('tr');
+		for (prop in mountain) {
+			var el = document.createElement('td');
+			if (typeof mountain[prop] === 'number') {
+				el.style.textAlign = "right";
+				}
+			el.textContent = mountain[prop];
+			row.appendChild(el);
+			}
+		table.appendChild(row);
+	})
+	return table;
+	}
+	</script>
+</html>

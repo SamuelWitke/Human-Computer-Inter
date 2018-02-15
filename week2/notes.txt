@@ -1,0 +1,66 @@
+Visibility / Discoverability
+Basic functions of a system should be easy for user to understand  
+
+Affordances
+Real affordance what the object can do
+
+Perceived affordances: what we think the object can do
+
+False affordance: a perceived affordance that doesn't line up with a real affordance.
+
+Hidden affordance a real affordance that isn't matched up with a clear perceived affordance 
+
+Negatice affordance:
+Constraints
+What cannot be done with object
+
+Physical Constraints
+-- Cant move past
+
+Semantic Constraints
+-- user knowledege 
+
+Logical Constraints
+
+Cultural Constraints
+
+Mapping 
+Relationship between two things
+
+Correspondence 
+
+Model 
+Mental Model
+What the user believes about the system at hand
+ -- based on belief not facts
+
+Conceptual model
+Designers intent of the model of the system
+
+Often a big gap between designers 
+
+Activity Cycle 
+Norman's action cycle 
+
+									  		Goals 
+				Execution 													Evaluation
+	What we do to the world 		Comparing what with what we wanted to happen.
+
+
+						Goals 
+Intention to act								
+Sequence of actions
+Execution of the action sequence 
+
+
+
+Gulf of Execution
+difference between user's intentions and allowable actions
+how well does a system allow a user to perfore their intended actions
+Usually caused by a lack of visibility (percevived affordance and constraints)
+
+Gulf of evaluation 
+amount of effort required to interpreet state of the system and how well the user's intention has been met
+How easy is it to get information about the system and interpret that information and match that interpretation
+Usually casued by lack of good feedback. :wq
+
