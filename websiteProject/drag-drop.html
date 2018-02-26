@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title>Lab3</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <style>
+            #dropArea{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                border: 1px solid #aaaaaa;
+            }
+            #dropArea img
+            {
+                max-width:100%;
+                max-height:100%;
+                margin:auto;
+                display:block;
+            }
+            .mh1 div {
+                height: 40vh; /* 30% of viewport height*/
+            }
+        </style>
+    </head>
+    <body>
+        <div style="margin:10px;">
+            <nav class="navbar navbar-inverse navbar-static-top">
+                <div class="container">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="./index.html">Part 1</a>
+                        </li>
+                        <li>
+                            <a href="./functionality.html">Part 2</a>
+                        </li>
+                        <li class="active">
+                            <a href="./form-advanced.html">Part 3</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+            <div class="container">
+                <div class="row mh1">
+                    <h1 class='jumbotron jumbotron-fluid' id='dropAreaText'>Drag the best corgie image into the rectangle:</h1>
+                    <div id="dropArea" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img id='Corgie1' draggable="true" ondragstart="drag(event)" src="http://cdn.akc.org/corgi-1.jpg" alt="Corgie1" style="width: 100%;">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img id='Corgie2' draggable="true" ondragstart="drag(event)" src="https://vetstreet.brightspotcdn.com/dims4/default/79f1bd2/2147483647/crop/0x0%2B0%2B0/resize/645x380/quality/90/?url=https%3A%2F%2Fvetstreet-brightspot.s3.amazonaws.com%2F83%2F9e8de0a7f411e0a0d50050568d634f%2Ffile%2FPembroke-Welsh-Corgi-3-645mk62711.jpg" alt="Corgie2" style="width:100%">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img id='Corgie3' draggable="true" ondragstart="drag(event)" src="http://images.mentalfloss.com/sites/default/files/styles/mf_image_3x2/public/istock_000020098551_small.jpg?itok=WKn4z1Z1&resize=1100x740" alt="Corgi3" style="width:100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+            let caption = ev.target.id.slice(-1);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+            document.getElementById("dropAreaText").innerHTML = "Good Choice of Corgie";
+        }
+    </script>
+</html>
