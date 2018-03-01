@@ -1,0 +1,82 @@
+<html>
+<head>
+	<title>Lab2</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<div style="margin:10px;">
+	<nav class="navbar navbar-inverse navbar-static-top">
+		<div class="container">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="./index.html">Part 1</a>
+				</li>
+				<li class="active">
+					<a href="./functionality.html">Part 2</a>
+				</li>
+				<li>
+					<a href="./form-advanced.html">Part 3</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<body>
+		<div class="container">
+			<div class="row">
+				<h1> Use select and option
+				to create a drop-down list from which the user can pick one item</h1>
+				<form name="AddAndEdit">
+					<select class="selectpicker" data-style="btn-primary" name="list" id="personlist" onchange="alert(this.options[this.selectedIndex].innerHTML);">
+
+						<option value="1">Choice 1</option>
+						<option value="2">Choice 2</option>
+						<option value="3">Choice 3</option>
+						<option value="4">Choice 4</option>
+						<option value="5">Choice 5</option>
+						<option value="6">Choice 6</option>
+						<option value="7">Choice 7</option>
+						<option value="8">Choice 8</option>
+						<option value="9">Choice 9</option>
+						<option value="10">Choice 10</option>
+						<option value="11">Choice 11</option>
+						<option value="12">Choice 12</option>
+					</select>
+				</form>
+			</div>
+					<label>Choose your favorite letter</label>
+					<p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
+			<div class="container">
+				<select class="mdb-select" data-style="btn-primary" multiple id="alpha">
+					<option value="a">A</option>
+					<option value="b">B</option>
+					<option value="c">C</option>
+					<option value="d">D</option>
+					<option value="f">F</option>
+					<option value="g">G</option>
+				</select>
+			</div>
+			</br>
+			<input type="button" class='btn btn-success' value="Submit" onclick="getMultipleSelectedValue()"/>
+			<h2 id="status">The Word Count is</h2>
+			<h2 id="statusBar"></h2>
+			<textarea id="area" onchange="updateStatusBar()" rows="2"></textarea>
+		</div>	
+	</body>
+	<script>
+function updateStatusBar() {
+	let text= document.getElementById("area").value;
+	let words = text.split(' ');
+	console.log(text,words)
+		document.getElementById("statusBar").innerHTML = (words = text.match(/\w\w+/g)) == null ? 0 : words.length
+}
+function getMultipleSelectedValue(){
+	var x=document.getElementById("alpha");
+	for (var i = 0; i < x.options.length; i++) {
+		if(x.options[i].selected){
+			alert(x.options[i].value);
+		}
+	}
+}
+	</script>
+</html>
+
