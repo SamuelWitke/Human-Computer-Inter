@@ -9,9 +9,6 @@
             table  {border-collapse: collapse; }
             td, th { border: 1px solid black; padding: 3px 8px;}
             th { text-align: left; }
-            body {
-                color: firebrick;
-            }
             .map {
                 height: 100%; overflow: auto;
             }
@@ -22,7 +19,7 @@
             <nav class="navbar navbar-inverse navbar-static-top">
                 <div class="container">
                     <ul class="nav navbar-nav">
-                     <li>
+                        <li>
                             <a href="./index.html">Part 1</a>
                         </li>
                         <li>
@@ -35,9 +32,13 @@
                 </div>
             </nav>
             <div class="jumbotron"  style="padding:40px;">
-                <h1><a href="./drag-drop.html"> Drag And Drop</a></h1>
-                <h1><a href="./video.html"> Video</a></h1>
+                <h1><a class="btn btn-lg btn-info" href="./drag-drop.html"> Go to Drag And Drop</a></h1>
+                <h1><a class="btn btn-lg btn-info" href="./video.html">Go to Video</a></h1>
                 <div class="container">
+                    <div id="result">
+                        <p class="lead"> Enter into local storage: </p><input type="text" name="text" value="" id="storage" /> 
+                        <button class="btn btn-success" onclick="saveStorage()">Save</button>
+                    </div>
                     <div class="row">
                         <div class="row">
                             <div class="col"> 
@@ -71,7 +72,7 @@
                                     <option value="10" label="100%" />
                                 </datalist>
                             </div>
-														<br/>
+                            <br/>
                             <div class="col">
                                 <button class="btn btn-success" onclick="myFunction()">Submit</button>
                             </div>
@@ -88,6 +89,18 @@
         <div class="map" id="map"></div>
     </body>
     <script>
+        function saveStorage() {
+            if (!confirm("Are you sure?")) {return}
+           let input = document.getElementById("storage").value;
+            if (typeof(Storage) !== "undefined") {
+                // Store
+                localStorage.setItem("id", input);
+                // Retrieve
+                document.getElementById("result").innerHTML = localStorage.getItem("id");
+                } else {
+                    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+                }
+        }
         var myLatlng = {lat: -25.363, lng: 131.044};
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
@@ -146,6 +159,7 @@
                                 }
                                 var USERS = [];
                                 function myFunction() {
+                                    if (!confirm("Are you sure?")) {return}
                                     let input = document.getElementById("text").value;
                                     let date = document.getElementById("date").value;
                                     let tel = document.getElementById("tel").value;
